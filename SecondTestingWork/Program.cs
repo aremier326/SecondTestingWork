@@ -12,7 +12,7 @@ namespace SecondTestingWork
         static void Main(string[] args)
         {
             //Initialising of list.
-            List<Product> products = new List<Product>()
+            List<Product> products = new List<Product>
             {
                 new Product{ Name = "Braun", Price = 500, Availability = 100, ExpDate = 2020},
                 new Product{ Name = "Apple", Price = 5000, Availability = 231, ExpDate = 2022},
@@ -21,7 +21,7 @@ namespace SecondTestingWork
             };
 
             // Initialising of dictionary.
-            Dictionary<string, Func<List<Product>, List<Product>>> dictionary = new Dictionary<string, Func<List<Product>, List<Product>>>
+            Dictionary<string, Action<List<Product>>> dictionary = new Dictionary<string, Action<List<Product>>>
             {
                 ["NameSort"] = SortByProdName,
                 ["PriceSort"] = SortByPrice,
@@ -47,39 +47,35 @@ namespace SecondTestingWork
         }
 
         // Method for sorting products by name.
-        public static List<Product> SortByProdName(List<Product> products)
+        public static void SortByProdName(List<Product> products)
         {
             Console.WriteLine("Sort by name.");
             products.Sort();
             ShowProducts(products);
-            return products;
         }
 
         // Method for sorting products by price.
-        public static List<Product> SortByPrice(List<Product> products)
+        public static void SortByPrice(List<Product> products)
         {
             Console.WriteLine("Sort by price.");
             products.Sort(new PriceComparer());
             ShowProducts(products);
-            return products;
         }
 
         // Method for sorting products by availability.
-        public static List<Product> SortByAvailability(List<Product> products)
+        public static void SortByAvailability(List<Product> products)
         {
             Console.WriteLine("Sort by availability.");
             products.Sort(new AvailabilityComparer());
-            ShowProducts(products);
-            return products;
+            ShowProducts(products);            
         }
 
         // Method for sorting products by exp date.
-        public static List<Product> SortByExpDate(List<Product> products)
+        public static void SortByExpDate(List<Product> products)
         {
             Console.WriteLine("Sort by exp date.");
             products.Sort(new ExpiryDateComparer());
             ShowProducts(products);
-            return products;
         }
 
     }
