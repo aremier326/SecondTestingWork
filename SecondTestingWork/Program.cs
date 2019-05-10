@@ -23,15 +23,37 @@ namespace SecondTestingWork
             // Initialising of dictionary.
             Dictionary<string, Action<List<Product>>> dictionary = new Dictionary<string, Action<List<Product>>>
             {
-                ["NameSort"] = SortByProdName,
-                ["PriceSort"] = SortByPrice,
-                ["AvailabilitySort"] = SortByAvailability,
-                ["ExpDateSort"] = SortByExpDate
+                // Anonymous method for sorting products by name.
+                ["NameSort"] = p => {
+                    Console.WriteLine("Sort by name.");
+                    p.Sort();
+                    ShowProducts(products);
+                },
+                // Anonymous method for sorting products by price.
+                ["PriceSort"] = p => {
+                    Console.WriteLine("Sort by price.");
+                    products.Sort(new PriceComparer());
+                    ShowProducts(products);
+                },
+                // Anonymous method for sorting products by availability.
+                ["AvailabilitySort"] = p => {
+                    Console.WriteLine("Sort by availability.");
+                    products.Sort(new AvailabilityComparer());
+                    ShowProducts(products);
+                },
+                // Anonymous method for sorting products by exp date.
+                ["ExpDateSort"] = p => {
+                    Console.WriteLine("Sort by exp date.");
+                    products.Sort(new ExpiryDateComparer());
+                    ShowProducts(products);
+                }
             };
 
+            dictionary["NameSort"](products);
             dictionary["PriceSort"](products);
             dictionary["AvailabilitySort"](products);
-            
+
+
             Console.ReadLine();
 
         }
@@ -45,38 +67,5 @@ namespace SecondTestingWork
             }
             Console.WriteLine();
         }
-
-        // Method for sorting products by name.
-        public static void SortByProdName(List<Product> products)
-        {
-            Console.WriteLine("Sort by name.");
-            products.Sort();
-            ShowProducts(products);
-        }
-
-        // Method for sorting products by price.
-        public static void SortByPrice(List<Product> products)
-        {
-            Console.WriteLine("Sort by price.");
-            products.Sort(new PriceComparer());
-            ShowProducts(products);
-        }
-
-        // Method for sorting products by availability.
-        public static void SortByAvailability(List<Product> products)
-        {
-            Console.WriteLine("Sort by availability.");
-            products.Sort(new AvailabilityComparer());
-            ShowProducts(products);            
-        }
-
-        // Method for sorting products by exp date.
-        public static void SortByExpDate(List<Product> products)
-        {
-            Console.WriteLine("Sort by exp date.");
-            products.Sort(new ExpiryDateComparer());
-            ShowProducts(products);
-        }
-
     }
 }
