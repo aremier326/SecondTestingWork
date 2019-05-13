@@ -27,25 +27,25 @@ namespace SecondTestingWork
                 ["NameSort"] = p => {
                     Console.WriteLine("Sort by name.");
                     p.Sort();
-                    ShowProducts(products);
+                    ShowProducts(p);
                 },
                 // Anonymous method for sorting products by price.
                 ["PriceSort"] = p => {
                     Console.WriteLine("Sort by price.");
-                    products.Sort(new PriceComparer());
-                    ShowProducts(products);
+                    p.Sort(new PriceComparer());
+                    ShowProducts(p);
                 },
                 // Anonymous method for sorting products by availability.
                 ["AvailabilitySort"] = p => {
                     Console.WriteLine("Sort by availability.");
-                    products.Sort(new AvailabilityComparer());
-                    ShowProducts(products);
+                    p.Sort(new AvailabilityComparer());
+                    ShowProducts(p);
                 },
                 // Anonymous method for sorting products by exp date.
                 ["ExpDateSort"] = p => {
                     Console.WriteLine("Sort by exp date.");
-                    products.Sort(new ExpiryDateComparer());
-                    ShowProducts(products);
+                    p.Sort(new ExpiryDateComparer());
+                    ShowProducts(p);
                 }
             };
 
